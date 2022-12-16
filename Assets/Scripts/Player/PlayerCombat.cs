@@ -6,8 +6,11 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Transform _attackPoint;
+
     [SerializeField] private LayerMask _enemyLayer;
+
     [SerializeField] private float _attackRange;
+
     [SerializeField] private AudioSource _attack1Sound;
     [SerializeField] private AudioSource _attack2Sound;
 
@@ -48,19 +51,16 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
-            _playerAnimator.SetTrigger("Attack");
-            
+            _playerAnimator.SetTrigger("Attack");  
         }
         IsEnemyInAttackRange();
-        
 
-        
-       
         _isSecondAttack = !_isSecondAttack;
 
     }
     private bool IsEnemyInAttackRange()
     {
+
         Collider2D[] _hitEnemy = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
         if (_hitEnemy != null)
         {
@@ -69,9 +69,14 @@ public class PlayerCombat : MonoBehaviour
                 _enemyHealth = enemy.GetComponent<EnemyHealth>();
             }
         }
+        else
+        {
+            return false;
+        }
+
         return _hitEnemy != null;
     }
-    // Set this method in animation event
+    // Set this method in animation event to apply damage when we want
     private void DamageEnemy()
     {
         if (IsEnemyInAttackRange())

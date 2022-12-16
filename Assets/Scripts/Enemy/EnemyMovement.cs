@@ -67,12 +67,12 @@ public class EnemyMovement : MonoBehaviour
             _enemyAnimator.SetBool("moving", true);
 
             //Make _enemy face direction
-            _enemy.localScale = new Vector3(Mathf.Abs(_initScale.x) * _direction,
-                _initScale.y, _initScale.z);
+            _enemy.localScale = new Vector2(Mathf.Abs(_initScale.x) * _direction,
+                _initScale.y);
 
             //Move in that direction
-            _enemy.position = new Vector3(_enemy.position.x + Time.deltaTime * _direction * _speed,
-                _enemy.position.y, _enemy.position.z);
+            _enemy.position = new Vector2(_enemy.position.x + Time.deltaTime * _direction * _speed,
+                _enemy.position.y);
         }
     }
 }
