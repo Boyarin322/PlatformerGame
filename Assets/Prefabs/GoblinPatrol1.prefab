@@ -202,8 +202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   attackSpeed: 0.5
-  range: 1
-  colliderDistance: 1
+  range: 2.5
+  colliderDistance: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
