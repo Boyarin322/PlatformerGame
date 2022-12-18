@@ -12,57 +12,56 @@ interface IDamageable
 public class PlayerHealth : MonoBehaviour , IDamageable
 {
     public bool IsAlive { get; private set; }
-    private int _currentHealth;
-    private int _maxHealth = 6;
+    private int currentHealth;
+    private int maxHealth = 6;
 
-    private VideoPlayer _deathClip;
-    private HealthBar _healthBar;
-    private Animator _playerAnimator;
-    private Rigidbody2D _playerRb;
-    private IFrames _iframe;
+    private VideoPlayer deathClip;
+    private Animator playerAnimator;
+    private Rigidbody2D playerRb;
+    private IFrames iframe;
 
-    [SerializeField] private AudioSource _deathSound;
+    [SerializeField] private AudioSource deathSound;
     [SerializeField] private HealthBar healthBar;
     private void Awake()
     {
         IsAlive= true;
-        healthBar.SetMaxHealth(_maxHealth);
-        _currentHealth = _maxHealth; 
-        _playerRb = GetComponent<Rigidbody2D>();
-        _playerAnimator= GetComponent<Animator>();
-        _deathClip = GameObject.Find("DeathVideo").GetComponent<VideoPlayer>();
+        healthBar.SetMaxHealth(maxHealth);
+        currentHealth = maxHealth; 
+        playerRb = GetComponent<Rigidbody2D>();
+        playerAnimator= GetComponent<Animator>();
+        deathClip = GameObject.Find("DeathVideo").GetComponent<VideoPlayer>();
     }
     
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(int damage)
     {
-        _currentHealth -= _damage;
+        currentHealth -= damage;
         CheckIfAlive();
-        _playerAnimator.SetTrigger("TakeDamage");
-        healthBar.SetHealth(_currentHealth);
-        _iframe = GetComponent<IFrames>();
-        StartCoroutine(_iframe.Invulnerability());
+        playerAnimator.SetTrigger("TakeDamage");
+        healthBar.SetHealth(currentHealth);
+        iframe = GetComponent<IFrames>();
+        StartCoroutine(iframe.Invulnerability());
     }
-    public void Heal(int _healValue)
+    public void Heal(int healValue)
     {
-        if(_currentHealth + _healValue >= _maxHealth)
+        if(currentHealth + healValue >= maxHealth)
         {
-            _currentHealth= _maxHealth;
+            currentHealth= maxHealth;
         }
         else
         {
-            _currentHealth += _healValue;
+            currentHealth += healValue;
         }
-        healthBar.SetHealth(_currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
     public void CheckIfAlive()
     {
-        if (_currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             IsAlive= false;
-            _playerAnimator.SetBool("isAlive", IsAlive);
-            _playerRb.bodyType = RigidbodyType2D.Static;
-            _deathSound.Play();
+            playerAnimator.SetBool("isAlive", IsAlive);
+            playerRb.bodyType = RigidbodyType2D.Static;
+            deathSound.Play();
             StartCoroutine(DeathClipCoroutine());
             
         }
@@ -70,6 +69,6 @@ public class PlayerHealth : MonoBehaviour , IDamageable
     IEnumerator DeathClipCoroutine()
     {
         yield return new WaitForSeconds(1.5f);
-        _deathClip.Play();
+        deathClip.Play();
     }
 }

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8320341155265663911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.15, y: 3.99, z: 0}
+  m_LocalPosition: {x: -17.05, y: 3.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8320341156255221049}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.582001, y: 4.25144, z: 0.84680516}
+  m_LocalPosition: {x: -14.96, y: 4.34, z: 0.84680516}
   m_LocalScale: {x: -3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,12 +200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab97072255256a4ea1e8b59528ef680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMaxHealth: 3
-  _components:
+  enemyMaxHealth: 3
+  components:
+  - {fileID: 8320341156255221048}
   - {fileID: 8320341156255221054}
   - {fileID: 8320341156255221041}
-  - {fileID: 8320341156255221048}
-  - {fileID: 8320341156255221051}
 --- !u!114 &8320341156255221054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,14 +217,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23840333f7125f544b72dc55b7885d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
-  _attackSpeed: 0.5
-  _range: 2.4
-  _colliderDistance: 0.6
-  _playerLayer:
+  damage: 1
+  attackSpeed: 1
+  range: 1
+  colliderDistance: 1
+  playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  _boxCollider: {fileID: 8320341156255221050}
+  boxCollider: {fileID: 8320341156255221050}
 --- !u!114 &8320341156255221041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,12 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d85dbcf4339d914e906020c4c5610df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftEdge: {fileID: 8320341155265663910}
-  _rightEdge: {fileID: 8320341156445459541}
-  _enemy: {fileID: 8320341156255221055}
-  _speed: 2
-  _idleDuration: 0.5
-  _enemyAnimator: {fileID: 8320341156255221051}
+  leftEdge: {fileID: 8320341155265663910}
+  rightEdge: {fileID: 8320341156445459541}
+  enemy: {fileID: 8320341156255221055}
+  speed: 1.5
+  idleDuration: 1
 --- !u!1 &8320341156445459538
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8320341156445459538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.75, y: 4.1, z: 0}
+  m_LocalPosition: {x: -14.33, y: 4.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

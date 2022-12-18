@@ -200,12 +200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d85dbcf4339d914e906020c4c5610df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftEdge: {fileID: 5625299173957389069}
-  _rightEdge: {fileID: 5625299173023174228}
-  _enemy: {fileID: 5625299173213699805}
-  _speed: 3
-  _idleDuration: 0.2
-  _enemyAnimator: {fileID: 5625299173213699809}
+  leftEdge: {fileID: 5625299173957389069}
+  rightEdge: {fileID: 5625299173023174228}
+  enemy: {fileID: 5625299173213699805}
+  speed: 2
+  idleDuration: 0.5
 --- !u!114 &5625299173213699807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,10 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab97072255256a4ea1e8b59528ef680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMaxHealth: 5
-  _components:
-  - {fileID: 5625299173213699806}
+  enemyMaxHealth: 5
+  components:
   - {fileID: 5625299173213699807}
+  - {fileID: 5625299173213699806}
   - {fileID: 5625299173213699804}
 --- !u!114 &5625299173213699804
 MonoBehaviour:
@@ -235,14 +234,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23840333f7125f544b72dc55b7885d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 2
-  _attackSpeed: 0.5
-  _range: 1.5
-  _colliderDistance: 0.4
-  _playerLayer:
+  damage: 2
+  attackSpeed: 0.5
+  range: 1
+  colliderDistance: 1
+  playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  _boxCollider: {fileID: 5625299173213699811}
+  boxCollider: {fileID: 5625299173213699811}
 --- !u!1 &5625299173905062212
 GameObject:
   m_ObjectHideFlags: 0

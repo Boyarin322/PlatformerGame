@@ -5,47 +5,49 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour , IDamageable
 {
     public bool IsAlive { get; private set; }
-    private int _enemyCurrentHealth;
-    [SerializeField] private int _enemyMaxHealth;
 
-    [SerializeField] private Behaviour[] _components;
+    private int enemyCurrentHealth;
+    [SerializeField] private int enemyMaxHealth;
 
-    private Animator _enemyAnimator;
+    [SerializeField] private Behaviour[] components;
+    private Animator enemyAnimator;
+
+    
    
 
     private void Awake()
     {
-         IsAlive = true;
-        _enemyCurrentHealth = _enemyMaxHealth;
-        _enemyAnimator = GetComponent<Animator>();
+        IsAlive = true;
+        enemyCurrentHealth = enemyMaxHealth;
+        enemyAnimator = GetComponent<Animator>();
     }
-    public void TakeDamage(int _damage)
+    public void TakeDamage(int damage)
     {
-        _enemyCurrentHealth -= _damage;
+        enemyCurrentHealth -= damage;
         CheckIfAlive();
         if (IsAlive)
         {
-            _enemyAnimator.SetTrigger("TakeDamage");
+            enemyAnimator.SetTrigger("TakeDamage");
         }
     }
 
     public void CheckIfAlive()
     {
-        if(_enemyCurrentHealth <= 0)
+        if(enemyCurrentHealth <= 0)
         {
             IsAlive= false;
             
             this.enabled= false;
             
 
-            _enemyAnimator.SetBool("isAlive", IsAlive);
+            enemyAnimator.SetBool("isAlive", IsAlive);
         }
     }
 
     //set this method in animation event
     public void DestroyAshes()
     {
-        foreach (Behaviour comp in _components)
+        foreach (Behaviour comp in components)
         {
             comp.enabled = false;
         }

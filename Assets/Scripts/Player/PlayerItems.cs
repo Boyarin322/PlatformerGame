@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour
 {
-    private int _coinAmount;
+    private int coinAmount;
     
-    [SerializeField] private TextMeshProUGUI _coinsHud;
+    [SerializeField] private TextMeshProUGUI coinsText;
 
     private void Awake()
     {
-        _coinAmount = PlayerPrefs.GetInt("CoinsAmount", 0);
-        _coinsHud.text = $"<sprite=0> : {_coinAmount}";
+        coinAmount = PlayerPrefs.GetInt("CoinsAmount", 0);
+        coinsText.text = $"<sprite=0> : {coinAmount}";
     }
     public void AddCoins(int coinsToAdd)
     {
-        PlayerPrefs.SetInt("CoinsAmount", _coinAmount += coinsToAdd);
-        _coinAmount = PlayerPrefs.GetInt("CoinsAmount", 0);
-        _coinsHud.text = $"<sprite=0> : {_coinAmount}";
+        PlayerPrefs.SetInt("CoinsAmount", coinAmount += coinsToAdd);
+        coinAmount = PlayerPrefs.GetInt("CoinsAmount", 0);
+        coinsText.text = $"<sprite=0> : {coinAmount}";
     }
 }

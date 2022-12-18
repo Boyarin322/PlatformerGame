@@ -32431,7 +32431,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 256
-  _jumpSound: {fileID: 727468389}
+  jumpSound: {fileID: 727468389}
 --- !u!95 &727468381
 Animator:
   serializedVersion: 4
@@ -32464,13 +32464,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f7814a796cce142b467f4c9e45eb25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackPoint: {fileID: 139737200}
-  _enemyLayer:
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  _attackRange: 1.2
-  _attack1Sound: {fileID: 727468387}
-  _attack2Sound: {fileID: 727468386}
+  attackRange: 1
+  attackPoint: {fileID: 139737200}
+  attack1Sound: {fileID: 727468387}
+  attack2Sound: {fileID: 727468386}
 --- !u!114 &727468383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32483,7 +32483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa90b073bddec442bef68b075abe31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathSound: {fileID: 727468388}
+  deathSound: {fileID: 727468388}
   healthBar: {fileID: 1898644163}
 --- !u!114 &727468384
 MonoBehaviour:
@@ -33001,7 +33001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a84e6858253285428d87224c9e3aae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsHud: {fileID: 1175182191}
+  coinsText: {fileID: 1175182191}
 --- !u!1 &727705814
 GameObject:
   m_ObjectHideFlags: 0
@@ -39822,6 +39822,39 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1147516509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5782625829418269168, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+  m_PrefabInstance: {fileID: 5195020680863187687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d85dbcf4339d914e906020c4c5610df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1147516510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4642963290626173483, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+  m_PrefabInstance: {fileID: 5195020680863187687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab97072255256a4ea1e8b59528ef680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1147516511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2459815684998647331, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+  m_PrefabInstance: {fileID: 5195020680863187687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23840333f7125f544b72dc55b7885d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1164476116
 GameObject:
   m_ObjectHideFlags: 0
@@ -43587,13 +43620,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e244121b9239d6448012753f237959a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthSlider: {fileID: 1898644164}
-  _gradient:
+  healthSlider: {fileID: 1898644164}
+  gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.13862722, b: 0, a: 1}
     key1: {r: 1, g: 0.9066223, b: 0, a: 1}
     key2: {r: 0.052406847, g: 0.9716981, b: 0, a: 1}
-    key3: {r: 0.052406847, g: 0.9716981, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 1}
     key4: {r: 0, g: 0, b: 0, a: 1}
     key5: {r: 0, g: 0, b: 0, a: 1}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -43601,7 +43634,7 @@ MonoBehaviour:
     ctime0: 20046
     ctime1: 44718
     ctime2: 65535
-    ctime3: 65535
+    ctime3: 0
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -43617,7 +43650,7 @@ MonoBehaviour:
     m_Mode: 1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 6
-  _fill: {fileID: 471526970}
+  fill: {fileID: 471526970}
 --- !u!114 &1898644164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50087,6 +50120,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EvilEyePatrol1
       objectReference: {fileID: 0}
+    - target: {fileID: 2459815684998647331, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+      propertyPath: colliderDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642963290626173483, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+      propertyPath: enemyMaxHealth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642963290626173483, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+      propertyPath: components.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642963290626173483, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+      propertyPath: components.Array.data[0]
+      value: 
+      objectReference: {fileID: 1147516511}
+    - target: {fileID: 4642963290626173483, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+      propertyPath: components.Array.data[1]
+      value: 
+      objectReference: {fileID: 1147516510}
+    - target: {fileID: 4642963290626173483, guid: 82075140cc641da4290a38cd1e796004, type: 3}
+      propertyPath: components.Array.data[2]
+      value: 
+      objectReference: {fileID: 1147516509}
     - target: {fileID: 8737426945360749119, guid: 82075140cc641da4290a38cd1e796004, type: 3}
       propertyPath: m_RootOrder
       value: 3

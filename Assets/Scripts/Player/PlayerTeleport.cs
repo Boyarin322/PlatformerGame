@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerTeleport : MonoBehaviour
 {
-    private GameObject _currentDoor;
+    private GameObject currentDoor;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && _currentDoor != null)
+        if(Input.GetKeyDown(KeyCode.E) && currentDoor != null)
         {
-            transform.position = _currentDoor.GetComponent<Doors>().GetNextRoomPosition().position;
+            transform.position = currentDoor.GetComponent<Doors>().GetNextRoomPosition().position;
             PlayRoomAudio();
         }
     }
@@ -18,27 +18,27 @@ public class PlayerTeleport : MonoBehaviour
     private void PlayRoomAudio()
     {
         
-        if (_currentDoor.GetComponent<Doors>().GetRoomAudio() != null)
+        if (currentDoor.GetComponent<Doors>().GetRoomAudio() != null)
         {
             foreach (var sound in GameObject.Find("Player").GetComponents<AudioSource>())
             {
                 sound.Pause();
             }
-            _currentDoor.GetComponent<Doors>().GetRoomAudio().Play();
+            currentDoor.GetComponent<Doors>().GetRoomAudio().Play();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Door"))
         {
-            _currentDoor= collision.gameObject;
+            currentDoor= collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Door"))
         {
-            _currentDoor = null;
+            currentDoor = null;
         }
     }
 }

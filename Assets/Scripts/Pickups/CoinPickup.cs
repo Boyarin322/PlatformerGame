@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     
-    private int _coinValue = 1;
+    private readonly int coinValue = 1;
    
 
     
@@ -13,7 +13,7 @@ public class CoinPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerItems>().AddCoins(_coinValue);
+            collision.gameObject.GetComponent<PlayerItems>().AddCoins(coinValue);
             Destroy(gameObject);
         }
     }

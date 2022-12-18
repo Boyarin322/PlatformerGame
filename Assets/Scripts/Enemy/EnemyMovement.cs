@@ -3,47 +3,47 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Patrol Points")]
-    [SerializeField] private Transform _leftEdge;
-    [SerializeField] private Transform _rightEdge;
+    [SerializeField] private Transform leftEdge;
+    [SerializeField] private Transform rightEdge;
 
     [Header("Enemy")]
-    [SerializeField] private Transform _enemy;
-    private EnemyHealth _enemyHealth;
+    [SerializeField] private Transform enemy;
+    private EnemyHealth enemyHealth;
 
     [Header("Movement parameters")]
-    [SerializeField] private float _speed;
-    private Vector3 _initScale;
-    private bool _movingLeft;
+    [SerializeField] private float speed;
+    private Vector3 initScale;
+    private bool movingLeft;
 
     [Header("Idle Behaviour")]
-    [SerializeField] private float _idleDuration;
-    private float _idleTimer;
+    [SerializeField] private float idleDuration;
+    private float idleTimer;
 
-    [Header("Enemy Animator")]
-    [SerializeField] private Animator _enemyAnimator;
+    private Animator enemyAnimator;
 
     private void Awake()
     {
-        _enemyHealth = GetComponent<EnemyHealth>();
-        _initScale = _enemy.localScale;
+        enemyHealth = GetComponent<EnemyHealth>();
+        enemyAnimator = GetComponent<Animator>();
+        initScale = enemy.localScale;
     }
     private void OnDisable()
     {
-        _enemyAnimator.SetBool("moving", false);
+        enemyAnimator.SetBool("moving", false);
     }
 
     private void Update()
     {
-        if (_movingLeft)
+        if (movingLeft)
         {
-            if (_enemy.position.x >= _leftEdge.position.x)
+            if (enemy.position.x >= leftEdge.position.x)
                 MoveInDirection(-1);
             else
                 DirectionChange();
         }
         else
         {
-            if (_enemy.position.x <= _rightEdge.position.x)
+            if (enemy.position.x <= rightEdge.position.x)
                 MoveInDirection(1);
             else
                 DirectionChange();
@@ -52,27 +52,27 @@ public class EnemyMovement : MonoBehaviour
 
     private void DirectionChange()
     {
-        _enemyAnimator.SetBool("moving", false);
-        _idleTimer += Time.deltaTime;
+        enemyAnimator.SetBool("moving", false);
+        idleTimer += Time.deltaTime;
 
-        if (_idleTimer > _idleDuration)
-            _movingLeft = !_movingLeft;
+        if (idleTimer > idleDuration)
+            movingLeft = !movingLeft;
     }
 
     private void MoveInDirection(int _direction)
     {
-        if (_enemyHealth.IsAlive)
+        if (enemyHealth.IsAlive)
         {
-            _idleTimer = 0;
-            _enemyAnimator.SetBool("moving", true);
+            idleTimer = 0;
+            enemyAnimator.SetBool("moving", true);
 
-            //Make _enemy face direction
-            _enemy.localScale = new Vector2(Mathf.Abs(_initScale.x) * _direction,
-                _initScale.y);
+            //Make enemy face direction
+            enemy.localScale = new Vector2(Mathf.Abs(initScale.x) * _direction,
+                initScale.y);
 
             //Move in that direction
-            _enemy.position = new Vector2(_enemy.position.x + Time.deltaTime * _direction * _speed,
-                _enemy.position.y);
+            enemy.position = new Vector2(enemy.position.x + Time.deltaTime * _direction * speed,
+                enemy.position.y);
         }
     }
 }

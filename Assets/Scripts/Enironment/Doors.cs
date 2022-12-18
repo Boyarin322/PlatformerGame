@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    [SerializeField] private Transform _nextRoomPosition;
-    [SerializeField] private AudioSource _nextRoomAudio;
+    [SerializeField] private Transform nextRoomPosition;
+    [SerializeField] private AudioSource nextRoomAudio;
    
     public Transform GetNextRoomPosition()
     {
-        return _nextRoomPosition;
+        return nextRoomPosition;
     }
     public AudioSource GetRoomAudio()
     {
-        return _nextRoomAudio;
+        return nextRoomAudio;
     }
 }

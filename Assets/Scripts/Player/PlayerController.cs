@@ -5,35 +5,35 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask ground;
-    [SerializeField] private AudioSource _jumpSound;
+    [SerializeField] private AudioSource jumpSound;
     
 
-    private Rigidbody2D _playerRb;
-    private Animator _playerAnimator;
-    private PlayerHealth _playerHealth;
-    private BoxCollider2D _boxCollider;
+    private Rigidbody2D playerRb;
+    private Animator playerAnimator;
+    private PlayerHealth playerHealth;
+    private BoxCollider2D boxCollider;
 
-    private float _speed = 10;
-    private float _jumpForce = 15;
-    private float _horizontalInput;
+    private readonly float speed = 10;
+    private readonly float jumpForce = 15;
+    private float horizontalInput;
     
     
 
     private void Awake()
     {
-        _playerRb = GetComponent<Rigidbody2D>();
-        _playerAnimator = GetComponent<Animator>();
-        _playerHealth = GetComponent<PlayerHealth>();
-        _boxCollider= GetComponent<BoxCollider2D>();
+        playerRb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
+        boxCollider= GetComponent<BoxCollider2D>();
     }
     private void Update()
     {
-        if (_playerHealth.IsAlive)
+        if (playerHealth.IsAlive)
         {
             CorrectScaleVectorX();
 
-            _horizontalInput = Input.GetAxis("Horizontal");
-            _playerRb.velocity = new Vector2(_horizontalInput * _speed, _playerRb.velocity.y);
+            horizontalInput = Input.GetAxis("Horizontal");
+            playerRb.velocity = new Vector2(horizontalInput * speed, playerRb.velocity.y);
 
             if (Input.GetKeyDown(KeyCode.Space) && IsOnGround())
             {
@@ -41,32 +41,32 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            _playerAnimator.SetBool("isRunning", _horizontalInput != 0);
-            _playerAnimator.SetBool("isGrounded", IsOnGround());
-            _playerAnimator.SetFloat("verticalSpeed", _playerRb.velocity.y);
+            playerAnimator.SetBool("isRunning", horizontalInput != 0);
+            playerAnimator.SetBool("isGrounded", IsOnGround());
+            playerAnimator.SetFloat("verticalSpeed", playerRb.velocity.y);
         }
         
     }
 
     private void Jump()
     {
-        _jumpSound.Play();
-        _playerRb.velocity = new Vector2(_playerRb.velocity.x, _jumpForce);   
+        jumpSound.Play();
+        playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);   
     }
    
  
     private bool IsOnGround()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0, Vector2.down, 0.1f, ground);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, ground);
         return raycastHit.collider != null;
     }
     private void CorrectScaleVectorX()
     {
-        if (_horizontalInput > 0.01f)
+        if (horizontalInput > 0.01f)
         {
             transform.localScale = new Vector2(3, 3);
         }
-        if (_horizontalInput < -0.01f)
+        if (horizontalInput < -0.01f)
         {
             transform.localScale = new Vector2(-3, 3);
         }

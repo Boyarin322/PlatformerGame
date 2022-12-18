@@ -5,60 +5,61 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     [Header ("Attack Properties")]
-    [SerializeField] private int _damage;
-    [SerializeField] private float _attackSpeed;
-    [SerializeField] private float _range;
-    [SerializeField] private float _colliderDistance;
+    [SerializeField] private int damage;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private float range;
+    [SerializeField] private float colliderDistance;
 
     [Header ("Player Layer")]
-    [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private LayerMask playerLayer;
 
-    [Header("Enemy Box Collider")]
-    [SerializeField] private BoxCollider2D _boxCollider;
+    [Header ("Box Collider")]
+    [SerializeField] private BoxCollider2D boxCollider;
 
-    private float _cooldownTimer = Mathf.Infinity;
+    private float cooldownTimer = Mathf.Infinity;
    
-    private RaycastHit2D _enemyVision;
-    private Animator _enemyAnimator;
-    private PlayerHealth _playerHealth;
-
+    private RaycastHit2D enemyVision;
+    private Animator enemyAnimator;
+    private PlayerHealth playerHealth;
+    
 
     private void Start()
     {
-        _enemyAnimator = GetComponent<Animator>();
+        enemyAnimator = GetComponent<Animator>();
     }
     private void Update()
     {
-        _cooldownTimer += Time.deltaTime;
+        cooldownTimer += Time.deltaTime;
 
         if (IsPlayerInSight())
         {
-            if (_cooldownTimer >= _attackSpeed)
+            if (cooldownTimer >= attackSpeed)
             {
                 //DamagePlayer
-                _cooldownTimer= 0;
-                _enemyAnimator.SetTrigger("Attack");
+                cooldownTimer= 0;
+                enemyAnimator.SetTrigger("Attack");
                
             }
         }
     }
     private bool IsPlayerInSight()
     {
-        _enemyVision = Physics2D.BoxCast(_boxCollider.bounds.center + transform.right * _range * (transform.localScale.x / 3)* _colliderDistance, 
-            new Vector2(_boxCollider.bounds.size.x * _range, _boxCollider.bounds.size.y), 0, 
-            Vector2.right, 0, _playerLayer);
-        if(_enemyVision.collider !=null)
+        enemyVision = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * (transform.localScale.x / 3)* colliderDistance, 
+            new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y), 0, 
+            Vector2.right, 0, playerLayer);
+
+        if(enemyVision.collider !=null)
         {
-            _playerHealth = _enemyVision.transform.GetComponent<PlayerHealth>();
+            playerHealth = enemyVision.transform.GetComponent<PlayerHealth>();
         }
 
-        return _enemyVision.collider != null; 
+        return enemyVision.collider != null; 
     }
     private void OnDrawGizmos() 
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(_boxCollider.bounds.center + transform.right * _range * (transform.localScale.x / 3)* _colliderDistance,
-            new Vector2(_boxCollider.bounds.size.x * _range, _boxCollider.bounds.size.y));
+        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * (transform.localScale.x / 3)* colliderDistance,
+            new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y));
     }
 
     // Set this method in animation event
@@ -67,7 +68,7 @@ public class EnemyCombat : MonoBehaviour
         
         if (IsPlayerInSight())
         {
-            _playerHealth.TakeDamage(_damage);
+            playerHealth.TakeDamage(damage);
         }
     }
 } 
