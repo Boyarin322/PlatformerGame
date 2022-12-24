@@ -30,6 +30,8 @@ public class PauseManager : MonoBehaviour
     }
     public void GoToMenu()
     {
+        Time.timeScale = 1;
+        gamePaused = false;
         SceneManager.LoadScene("Menu");
     }
     public void GoToOptions()
